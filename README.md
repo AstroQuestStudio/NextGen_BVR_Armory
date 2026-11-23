@@ -6,15 +6,31 @@ A modular, non-destructive DCS World `Saved Games` weapon & SAM expansion featur
 - **Calibrated Mach-Indexed DCS Aerodynamic Polars** (`mod/Database/polar_profiles.lua`) built from real DCS World polar families (`AIM-120C`, `SD-10`, `9M723`, `AGM-84H`, `X-101`, `LS-6`, `AGM-88`, `RIM-7M`, `AGR-20A`)
 - **79 custom `+X Forward` `.edm` 3D shapes** & **159 2K PBR texture maps** (beveled cabover 8×8 MAN HX / KamAZ-6560 / HEMTT / MAZ-543 twin-cab chassis, bolted wheel hubs, radiator louvers, AESA T/R grids, slotted C-RAM U-barbette + brass 20mm link chute)
 
+## Catalogue Complet & Fiches 1-par-1 (262 Armes + 11 Systèmes Sol-Air + 79 Rendus)
+
+> **[Ouvrir le Catalogue Complet (`docs/CATALOG.md`)](docs/CATALOG.md)** — Accès direct aux **262 fiches individuelles** ([`docs/missiles/`](docs/missiles/)), **11 fiches sol-air / C-RAM** ([`docs/air-defense/`](docs/air-defense/)) et **79 rendus studio 3D** ([`docs/renders/`](docs/renders/)).
+
+### Fiches Défenses Sol-Air & C-RAM (11)
+
+- [Centurion C-RAM Phalanx CIWS](docs/air-defense/NG_CRAM_Centurion.md) (`ng_cram_centurion`)
+- [Iron Dome 5×4 Tamir Launcher](docs/air-defense/NG_IronDome_Launcher.md) (`ng_iron_dome_ln`) · [Radar EL/M-2084 MMR](docs/air-defense/NG_IronDome_ELM2084.md) (`ng_iron_dome_radar`)
+- [Diehl IRIS-T SLM 8×8](docs/air-defense/NG_IRIST_SLM_Launcher.md) (`ng_irist_slm_ln`) · [Radar Hensoldt TRML-4D AESA](docs/air-defense/NG_TRML_4D_Radar.md) (`ng_trml_4d_radar`)
+- [Eurosam SAMP/T Aster 30 B1NT](docs/air-defense/NG_SAMPT_Aster30_Launcher.md) (`ng_sampt_aster30`)
+- [Pantsir-SM 96K6 SPAAGM](docs/air-defense/NG_Pantsir_SM.md) (`ng_pantsir_sm`)
+- [Patriot M903 PAC-3 MSE 16-Cell](docs/air-defense/NG_Patriot_PAC3_MSE_LN.md) (`ng_patriot_pac3_ln`)
+- [THAAD M1120 8-Tube Exo-ABM](docs/air-defense/NG_THAAD_Launcher.md) (`ng_thaad_ln`)
+- [S-400 Triumf 5P85SM2 40N6 TEL](docs/air-defense/NG_S400_TEL.md) (`ng_s400_tel`)
+- [KEKA Aerospace Troposphère Pad (Troll SAM)](docs/air-defense/NG_KEKA_LaunchPad.md) (`ng_keka_launcher`)
+
 ## Visual Showcase & Orthographic Audit
 
 | v5 HQ Ground SAM / C-RAM Rework | Missiles & Backlog Showcase |
 |---|---|
-| `docs/preview_hq_sam_v5.png` | `docs/preview_missiles_v5_ortho.png` |
-| `docs/preview_hq_cram_irondome_closeup.png` | `docs/preview_backlog_keka_v4.png` |
-| `docs/preview_mega_aam_v3.png` | `docs/ortho_aam_top_side.png` |
-| `docs/preview_ballistic_naval_sead_v3.png` | `docs/ortho_arsenal_top_side.png` |
-| `docs/preview_cruise_drones_bombs_v3.png` | `docs/ortho_folded_vs_deployed.png` |
+| ![v5 HQ SAM & C-RAM](docs/preview_hq_sam_v5.png) | ![v5 Missiles Ortho](docs/preview_missiles_v5_ortho.png) |
+| ![C-RAM & Iron Dome Close-up](docs/preview_hq_cram_irondome_closeup.png) | ![Backlog & KEKA](docs/preview_backlog_keka_v4.png) |
+| ![Mega AAMs](docs/preview_mega_aam_v3.png) | ![Ortho AAM Top/Side](docs/ortho_aam_top_side.png) |
+| ![Ballistic, Naval & SEAD](docs/preview_ballistic_naval_sead_v3.png) | ![Ortho Arsenal Top/Side](docs/ortho_arsenal_top_side.png) |
+| ![Cruise, Drones & Glide Bombs](docs/preview_cruise_drones_bombs_v3.png) | ![Folded vs Deployed Wings](docs/ortho_folded_vs_deployed.png) |
 
 ## Highlights Added in v5.0
 

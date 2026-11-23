@@ -1,0 +1,35 @@
+# AGM-84N Harpoon Block II+ (NG)
+
+> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> Catégorie : **SEAD / Anti-Radar & Powered Precision** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
+
+![Rendu 3D ng_exocet_am39](../renders/ng_exocet_am39.png)
+
+## Fiche Technique
+
+| Paramètre | Valeur |
+|---|---|
+| **ID Interne** | `NG_AGM_84N_HARPOON` |
+| **CLSID Pylône** | `{NEXTGEN_AGM84N_HARPOON}` |
+| **Nom Court HUD / RWR** | `Harpoon+` |
+| **Modèle 3D (`.edm`)** | [`ng_exocet_am39.edm`](../../mod/Shapes/ng_exocet_am39.edm) |
+| **Calibre / Diamètre** | `0.343 m` (`343 mm`) |
+| **Longueur** | `3.85 m` |
+| **Masse au Lancement** | `528.0 kg` |
+| **Mach Max** | `Mach 0.85` |
+| **Portée Max** | `280 km` |
+| **Charge Militaire** | `221.0 kg` |
+| **Facteur de Charge Max (`Nr_max`)** | `40 G` |
+| **Guidage / Autodirecteur** | Radar Actif / Multi-Mode / INS+GPS (`Head_Type = 2` / Croisière) |
+| **Propulsion** | Single/Sustained (145.0 kg fuel, Burn: 240.0s, Isp: 320s) |
+| **Résistance ECM (`ccm_k0`)** | `0.03` |
+| **Temps de Vie Max** | `140 s` |
+
+## Polaire Aérodynamique & Modèle de Vol
+
+- **Profil utilisé** : `FM_CRUISE_STEALTH` — **AGM-84H / Kh-101 Subsonic Stealth Cruise Polar**
+- **Détails physiques (`polar_profiles.lua`)** : High L/D folded-wing turbofan cruise curve (`Cx0 = 0.023` subsonic cruise, `Sw = 1.35`, `addDeplSw = 0.80`, `wingsDeplDelay = 1.0s`, `wingsDeplProcTime = 2.5s`).
+
+## Animations & Modèle 3D
+
+- Corps monobloc rigide `+X Forward` sans surface mobile repliable.

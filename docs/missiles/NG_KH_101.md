@@ -1,0 +1,35 @@
+# Kh-101 Strategic ALCM (NextGen)
+
+> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> Catégorie : **Stealth Cruise & Stand-Off** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
+
+![Rendu 3D ng_stealth_cruise](../renders/ng_stealth_cruise.png)
+
+## Fiche Technique
+
+| Paramètre | Valeur |
+|---|---|
+| **ID Interne** | `NG_KH_101` |
+| **CLSID Pylône** | `{NEXTGEN_KH_101}` |
+| **Nom Court HUD / RWR** | `Kh-101` |
+| **Modèle 3D (`.edm`)** | [`ng_stealth_cruise.edm`](../../mod/Shapes/ng_stealth_cruise.edm) |
+| **Calibre / Diamètre** | `0.742 m` (`742 mm`) |
+| **Longueur** | `7.45 m` |
+| **Masse au Lancement** | `2400.0 kg` |
+| **Mach Max** | `Mach 0.92` |
+| **Portée Max** | `2500 km` |
+| **Charge Militaire** | `450.0 kg` |
+| **Facteur de Charge Max (`Nr_max`)** | `40 G` |
+| **Guidage / Autodirecteur** | Radar Actif / Multi-Mode / INS+GPS (`Head_Type = 2` / Croisière) |
+| **Propulsion** | Single/Sustained (1050.0 kg fuel, Burn: 2400.0s, Isp: 3400s) |
+| **Résistance ECM (`ccm_k0`)** | `0.03` |
+| **Temps de Vie Max** | `3600 s` |
+
+## Polaire Aérodynamique & Modèle de Vol
+
+- **Profil utilisé** : `FM_CRUISE_STEALTH` — **AGM-84H / Kh-101 Subsonic Stealth Cruise Polar**
+- **Détails physiques (`polar_profiles.lua`)** : High L/D folded-wing turbofan cruise curve (`Cx0 = 0.023` subsonic cruise, `Sw = 1.35`, `addDeplSw = 0.80`, `wingsDeplDelay = 1.0s`, `wingsDeplProcTime = 2.5s`).
+
+## Animations & Modèle 3D
+
+- `DrawArg 25` — Ailes / empennages repliés sur pylône (`0.0`) -> déployés en vol (`1.0`)
