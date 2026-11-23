@@ -1,6 +1,6 @@
 # ER-GMLRS 150km Precision Rocket
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_M31A2_GMLRS](NG_M31A2_GMLRS.md) · [NG_TORNADO_S_9M544](NG_TORNADO_S_9M544.md) →  
 > Catégorie : **Ballistic, MRBM, ALBM & Precision Artillery** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
 
 ![Rendu 3D ng_gmlrs_m31](../renders/ng_gmlrs_m31.png)
@@ -28,7 +28,11 @@
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `FM_HYPERSONIC` — **9M723 Iskander / Kinzhal / DF-17 Hypersonic Polar**
-- **Détails physiques (`polar_profiles.lua`)** : Ultra-low hypersonic drag curve (`Cx0 = 0.36 @ M0 -> 0.52 @ M1.0 -> 0.118 @ M5.0`, `Iy = 3800`) for quasi-ballistic and ABM trajectories.
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : Ultra-low hypersonic drag curve (`Cx0 = 0.36 @ M0 -> 0.52 @ M1.0 -> 0.118 @ M5.0`, `Iy = 3800`) for quasi-ballistic and ABM trajectories.
+
+| Mach | M0.0 | M0.8 | M1.2 | M2.0 | M3.0 | M4.0 | M5.0 |
+|---|---|---|---|---|---|---|---|
+| **Traînée `Cx0`** | `0.360` | `0.370` | `0.510` | `0.310` | `0.188` | `0.140` | `0.118` |
 
 ## Animations & Modèle 3D
 

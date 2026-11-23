@@ -1,6 +1,6 @@
 # IAI Arrow 3 Exo-ABM (NextGen)
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_SAM_RIM116C](NG_SAM_RIM116C.md) · [NG_SAM_STUNNER](NG_SAM_STUNNER.md) →  
 > Catégorie : **SAM & ABM Interceptors** · Fichier source : `mod/Database/weapons_sam_interceptors.lua`
 
 ![Rendu 3D ng_sam_thaad](../renders/ng_sam_thaad.png)
@@ -28,7 +28,11 @@
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `FM_HYPERSONIC` — **9M723 Iskander / Kinzhal / DF-17 Hypersonic Polar**
-- **Détails physiques (`polar_profiles.lua`)** : Ultra-low hypersonic drag curve (`Cx0 = 0.36 @ M0 -> 0.52 @ M1.0 -> 0.118 @ M5.0`, `Iy = 3800`) for quasi-ballistic and ABM trajectories.
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : Ultra-low hypersonic drag curve (`Cx0 = 0.36 @ M0 -> 0.52 @ M1.0 -> 0.118 @ M5.0`, `Iy = 3800`) for quasi-ballistic and ABM trajectories.
+
+| Mach | M0.0 | M0.8 | M1.2 | M2.0 | M3.0 | M4.0 | M5.0 |
+|---|---|---|---|---|---|---|---|
+| **Traînée `Cx0`** | `0.360` | `0.370` | `0.510` | `0.310` | `0.188` | `0.140` | `0.118` |
 
 ## Animations & Modèle 3D
 

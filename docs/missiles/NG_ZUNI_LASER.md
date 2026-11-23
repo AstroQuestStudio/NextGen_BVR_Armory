@@ -1,6 +1,6 @@
 # Zuni 127mm Laser-Guided (NextGen)
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_CIRIT_70MM](NG_CIRIT_70MM.md) · [NG_S8_CORR](NG_S8_CORR.md) →  
 > Catégorie : **ATGM, Guided Rockets & Tactical ASM** · Fichier source : `mod/Database/weapons_tactical_30.lua`
 
 ![Rendu 3D ng_guided_rocket](../renders/ng_guided_rocket.png)
@@ -28,7 +28,11 @@
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `FM_AAM_BVR` — **AIM-120C / SD-10 Mach 0.0–5.0 Polar**
-- **Détails physiques (`polar_profiles.lua`)** : Supersonic medium/BVR active-missile polar (`Cx0 = 0.468 @ M0 -> 0.880 @ M1.2 -> 0.364 @ M5.0`, `Cya = 0.318..0.518`, `delta_max = 0.349 rad`).
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : Supersonic medium/BVR active-missile polar (`Cx0 = 0.468 @ M0 -> 0.880 @ M1.2 -> 0.364 @ M5.0`, `Cya = 0.318..0.518`, `delta_max = 0.349 rad`).
+
+| Mach | M0.0 | M0.8 | M1.2 | M2.0 | M3.0 | M4.0 | M5.0 |
+|---|---|---|---|---|---|---|---|
+| **Traînée `Cx0`** | `0.468` | `0.479` | `0.880` | `0.720` | `0.555` | `0.444` | `0.364` |
 
 ## Animations & Modèle 3D
 

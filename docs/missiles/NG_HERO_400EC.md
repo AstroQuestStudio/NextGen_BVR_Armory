@@ -1,6 +1,6 @@
 # UVision HERO-400EC Long-Endurance
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_HERO_120](NG_HERO_120.md) · [NG_WARMATE](NG_WARMATE.md) →  
 > Catégorie : **Loitering Munitions & One-Way Drones** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
 
 ![Rendu 3D ng_loitering_x](../renders/ng_loitering_x.png)
@@ -28,7 +28,11 @@
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `FM_LOITER_DRONE` — **Subsonic Loitering Prop / Jet Drone Polar**
-- **Détails physiques (`polar_profiles.lua`)** : Ultra-low cruise drag (`Cx0 = 0.020`, `Sw = 1.15`, `dCydA = {0.08, 0.042}`) for long-endurance loitering munitions.
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : Ultra-low cruise drag (`Cx0 = 0.020`, `Sw = 1.15`, `dCydA = {0.08, 0.042}`) for long-endurance loitering munitions.
+
+| Mach | M0.0 | M0.5 | M0.8 | M1.0 | M1.4 | M2.0 |
+|---|---|---|---|---|---|---|
+| **Traînée `Cx0`** | `0.020` | `0.042` | `0.180` | `0.420` | `0.340` | `0.260` |
 
 ## Animations & Modèle 3D
 

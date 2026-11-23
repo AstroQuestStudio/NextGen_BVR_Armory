@@ -1,6 +1,6 @@
 # ADM-160 MALD-J Decoy (NextGen)
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_SPEAR_3](NG_SPEAR_3.md) · [NG_AASM_250](NG_AASM_250.md) →  
 > Catégorie : **Stealth Cruise & Stand-Off** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
 
 ![Rendu 3D ng_glide_sdb](../renders/ng_glide_sdb.png)
@@ -28,7 +28,11 @@
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `FM_CRUISE_STEALTH` — **AGM-84H / Kh-101 Subsonic Stealth Cruise Polar**
-- **Détails physiques (`polar_profiles.lua`)** : High L/D folded-wing turbofan cruise curve (`Cx0 = 0.023` subsonic cruise, `Sw = 1.35`, `addDeplSw = 0.80`, `wingsDeplDelay = 1.0s`, `wingsDeplProcTime = 2.5s`).
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : High L/D folded-wing turbofan cruise curve (`Cx0 = 0.023` subsonic cruise, `Sw = 1.35`, `addDeplSw = 0.80`, `wingsDeplDelay = 1.0s`, `wingsDeplProcTime = 2.5s`).
+
+| Mach | M0.0 | M0.5 | M0.8 | M1.0 | M1.4 | M2.0 |
+|---|---|---|---|---|---|---|
+| **Traînée `Cx0`** | `0.023` | `0.023` | `0.035` | `0.450` | `0.290` | `0.245` |
 
 ## Animations & Modèle 3D
 

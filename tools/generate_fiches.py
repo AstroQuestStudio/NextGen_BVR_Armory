@@ -188,6 +188,24 @@ def load_air_defense_units(sam_weapons_by_id: dict):
     return units
 
 
+def load_polar_cx0() -> dict[str, tuple[float, list[float]]]:
+    """Parse exact Cx0 arrays and table_scale from mod/Database/polar_profiles.lua."""
+    txt = (DB / "polar_profiles.lua").read_text(encoding="utf-8")
+    cx_map: dict[str, tuple[float, list[float]]] = {}
+    base_cx0 = [float(x) for x in re.search(r"M\.FM_AAM_BVR\s*=.*?Cx0\s*=\s*\{([^}]+)\}", txt, re.S).group(1).split(",")]
+    cx_map["FM_AAM_BVR"] = (0.2, base_cx0)
+    # Direct table_scale = 0.1 profiles
+    for pname in ("FM_CRUISE_STEALTH", "FM_GLIDE_BOMB", "FM_LOITER_DRONE"):
+        blk = re.search(rf"M\.{pname}\s*=\s*\{{(.*?)\n\}}", txt, re.S).group(1)
+        arr = [float(x) for x in re.search(r"Cx0\s*=\s*\{([^}]+)\}", blk).group(1).split(",")]
+        cx_map[pname] = (0.1, arr)
+    # Derived deep_copy profiles (scale 0.2)
+    for pname in ("FM_AAM_WVR", "FM_AAM_ULTRA", "FM_HYPERSONIC", "FM_KEKA_TROLL"):
+        m = re.search(rf"M\.{pname}\.Cx0\s*=\s*\{{([^}}]+)\}}", txt)
+        cx_map[pname] = (0.2, [float(x) for x in m.group(1).split(",")] if m else base_cx0)
+    return cx_map
+
+
 def fmt_km(m: object) -> str:
     val = float(m)
     if val >= 1000:
@@ -195,11 +213,21 @@ def fmt_km(m: object) -> str:
     return f"{val:.0f} m"
 
 
-def write_weapon_fiche(sp: dict, racks_map: dict) -> None:
+def write_weapon_fiche(sp: dict, racks_map: dict, polar_cx: dict, prev_w: dict | None, next_w: dict | None) -> None:
     wid = str(sp["id"])
     shape = str(sp["shape"])
     pname = str(sp["_polar"])
     p_title, p_desc = POLAR_SUMMARIES.get(pname, (pname, ""))
+
+    # Build sampled Mach -> Cx0 drag curve row
+    scale, arr = polar_cx.get(pname, (0.2, []))
+    polar_tbl = ""
+    if arr:
+        sample_machs = [0.0, 0.5, 0.8, 1.0, 1.4, 2.0] if scale == 0.1 else [0.0, 0.8, 1.2, 2.0, 3.0, 4.0, 5.0]
+        hdr = " | ".join(f"M{m:.1f}" for m in sample_machs)
+        sep = "|".join("---" for _ in sample_machs)
+        vals = " | ".join(f"`{arr[min(len(arr) - 1, int(round(m / scale)))]:.3f}`" for m in sample_machs)
+        polar_tbl = f"\n| Mach | {hdr} |\n|---|{sep}|\n| **Traînée `Cx0`** | {vals} |\n"
 
     render_file = RENDERS_DIR / f"{shape}.png"
     has_render = render_file.exists()
@@ -240,9 +268,15 @@ def write_weapon_fiche(sp: dict, racks_map: dict) -> None:
         else "Radar Actif / Multi-Mode / INS+GPS (`Head_Type = 2` / Croisière)"
     )
 
+    nav_parts = ["[Catalogue Général](../CATALOG.md)", "[Accueil Mod](../../README.md)"]
+    if prev_w:
+        nav_parts.append(f"← [{prev_w['id']}]({prev_w['id']}.md)")
+    if next_w:
+        nav_parts.append(f"[{next_w['id']}]({next_w['id']}.md) →")
+
     md = f"""# {sp.get('display_name', wid)}
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> {' · '.join(nav_parts)}  
 > Catégorie : **{sp['_category']}** · Fichier source : `mod/Database/{sp['_source']}`
 
 {f'![Rendu 3D {shape}](../renders/{shape}.png)' if has_render else '_Rendu individuel non généré_'}
@@ -270,8 +304,8 @@ def write_weapon_fiche(sp: dict, racks_map: dict) -> None:
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `{pname}` — **{p_title}**
-- **Détails physiques (`polar_profiles.lua`)** : {p_desc}
-
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : {p_desc}
+{polar_tbl}
 ## Animations & Modèle 3D
 
 {anim_md}
@@ -336,11 +370,14 @@ def main() -> None:
         old.unlink()
 
     weapons, racks_map = load_all_weapons()
+    polar_cx = load_polar_cx0()
     by_id = {str(w["id"]): w for w in weapons}
     ad_units = load_air_defense_units(by_id)
 
-    for w in weapons:
-        write_weapon_fiche(w, racks_map)
+    for idx_w, w in enumerate(weapons):
+        prev_w = weapons[idx_w - 1] if idx_w > 0 else None
+        next_w = weapons[idx_w + 1] if idx_w + 1 < len(weapons) else None
+        write_weapon_fiche(w, racks_map, polar_cx, prev_w, next_w)
     for u in ad_units:
         write_ad_fiche(u)
 
@@ -401,7 +438,108 @@ def main() -> None:
             )
 
     (DOCS / "CATALOG.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"[OK] Generated {len(weapons)} weapon fiches, {len(ad_units)} air-defense fiches, and docs/CATALOG.md")
+
+    # Collect unique multi-racks for showcase
+    all_racks: list[tuple[str, str, int, str]] = []
+    seen_racks = set()
+    for wid_k, rlist in racks_map.items():
+        for clsid, dname, cnt in rlist:
+            if clsid not in seen_racks:
+                seen_racks.add(clsid)
+                all_racks.append((clsid, dname, cnt, wid_k))
+
+    # Build rich, ultra-visual GitHub front page (README.md) so visitors see EVERYTHING immediately!
+    readme = [
+        '<div align="center">\n',
+        "# NextGen BVR, Strategic & Air Defense Armory v5.0\n",
+        "![DCS World 2.9+](https://img.shields.io/badge/DCS%20World-2.9%2B-1f6feb?style=for-the-badge) "
+        "![262 Weapons](https://img.shields.io/badge/Weapons-262-238636?style=for-the-badge) "
+        "![11 Air Defenses](https://img.shields.io/badge/Air%20Defenses-11-d29922?style=for-the-badge) "
+        "![79 EDM Models](https://img.shields.io/badge/3D%20Models%20(.edm)-79-8957e5?style=for-the-badge) "
+        "![159 PBR Maps](https://img.shields.io/badge/2K%20PBR%20Textures-159-da3633?style=for-the-badge)\n",
+        "\n**[Catalogue Complet (`docs/CATALOG.md`)](docs/CATALOG.md) · "
+        "[262 Fiches Missiles](docs/missiles/) · "
+        "[11 Fiches Sol-Air / C-RAM](docs/air-defense/) · "
+        "[79 Rendus 3D](docs/renders/)**\n",
+        "\n![NextGen Armory v5.0 HQ Air Defense Showcase](docs/preview_hq_sam_v5.png)\n",
+        "</div>\n",
+        "---\n",
+        "\n## Vue d'Ensemble Visuelle — Tous les 79 Modèles 3D (`.edm`)\n",
+        "\n### 1. Défenses Sol-Air, Radars AESA & C-RAM (11 Systèmes)\n",
+        "![Sheet 01 SAM & C-RAM](docs/sheet_01_sam_and_cram.png)\n",
+        "\n| Aperçu | Système Sol-Air (Fiche 1-par-1) | Radar / Rôle | Portée / Plafond | Armement / Cadence |",
+        "|---|---|---|---|---|",
+    ]
+    for u in ad_units:
+        ammo_txt = (
+            f"[{u['ammo_id']}](docs/missiles/{u['ammo_id']}.md) ×{u['ammo_capacity']}"
+            if u["ammo_id"]
+            else f"{u['ammo_name']} ({u['ammo_capacity']})"
+        )
+        readme.append(
+            f"| [<img src=\"docs/renders/{u['shape']}.png\" width=\"160\"/>](docs/air-defense/{u['id']}.md) | "
+            f"**[{u['display_name']}](docs/air-defense/{u['id']}.md)**<br>`{u['id']}` · `{u['shape']}.edm` | "
+            f"`{u['radar_sensor']}`<br>Détect `{fmt_km(u['det_range_m'])}` · Réaction `{u['reaction_s']}s` | "
+            f"`{fmt_km(u['threat_range_m'])}` / `{fmt_km(u['max_alt_m'])}` | {ammo_txt} |"
+        )
+
+    readme += [
+        "\n### 2. Missiles Air-Air (BVR / WVR / Ramjet) & Intercepteurs SAM (28 Modèles)\n",
+        "![Sheet 02 AAM & SAM](docs/sheet_02_aam_and_sam_missiles.png)\n",
+        "\n### 3. Missiles de Croisière, Anti-Navires, SEAD, Balistiques & Hypersoniques (23 Modèles)\n",
+        "![Sheet 03 Cruise Naval SEAD Ballistic](docs/sheet_03_cruise_naval_sead_ballistic.png)\n",
+        "\n### 4. Bombes Planantes, Drones, ATGMs, Roquettes & Collection Troll KEKA (17 Modèles)\n",
+        "![Sheet 04 Glide Drones ATGM KEKA](docs/sheet_04_glide_drones_atgm_keka.png)\n",
+        "\n---\n",
+        "\n## Catalogue Intégral des 262 Armes (Déplier Chaque Catégorie)\n",
+        "\n> Cliquez sur n'importe quelle catégorie ci-dessous pour afficher **toutes les armes directement ici** avec accès 1-clic à leur **fiche détaillée** (`docs/missiles/<ID>.md`) et leur **rendu 3D** (`docs/renders/<shape>.png`). Vous pouvez aussi tout consulter d'un bloc dans [`docs/CATALOG.md`](docs/CATALOG.md).\n",
+    ]
+
+    for idx_cat, c in enumerate(cat_order):
+        items = grouped.get(c, [])
+        open_attr = " open" if idx_cat in (0, 9, 10) else ""
+        readme.append(f"\n<details{open_attr}>")
+        readme.append(f"<summary><strong>{c} — {len(items)} armes</strong> (cliquer pour déplier)</summary>\n")
+        readme.append("\n| Arme (Fiche 1-par-1) | ID / CLSID | Modèle 3D | Mach | Portée | Masse / Charge | Polaire |")
+        readme.append("|---|---|---|---|---|---|---|")
+        for w in items:
+            wid = str(w["id"])
+            sh = str(w["shape"])
+            clsid = w.get("clsid", "Sol-Air")
+            wh = w.get("warhead_mass", w.get("warhead", 0))
+            readme.append(
+                f"| **[{w.get('display_name', wid)}](docs/missiles/{wid}.md)** | `{wid}`<br>`{clsid}` | "
+                f"[`{sh}`](docs/renders/{sh}.png) | M{w.get('mach_max', 0)} | {fmt_km(w.get('range_max', 0))} | "
+                f"{w.get('mass', 0):.0f} kg / {wh} kg | `{w['_polar']}` |"
+            )
+        readme.append("\n</details>\n")
+
+    readme += [
+        "\n## Emports Multi-Racks (12 Racks)\n",
+        "| CLSID | Désignation | Quantité | Munition / Fiche |",
+        "|---|---|---|---|",
+    ]
+    for clsid, dname, cnt, wid_k in sorted(all_racks):
+        readme.append(f"| `{clsid}` | **{dname}** | `{cnt}x` | [{wid_k}](docs/missiles/{wid_k}.md) |")
+
+    readme += [
+        "\n## Audits Orthographiques & Planches Studio\n",
+        "| Gros Plan C-RAM / Iron Dome | Missiles v5 (Tomahawk V, THAAD, 40N6, GMLRS) |",
+        "|---|---|",
+        "| ![Close-up C-RAM Iron Dome](docs/preview_hq_cram_irondome_closeup.png) | ![Missiles v5 Ortho](docs/preview_missiles_v5_ortho.png) |",
+        "| ![AAM Ortho Top/Side](docs/ortho_aam_top_side.png) | ![Arsenal Ortho Top/Side](docs/ortho_arsenal_top_side.png) |",
+        "| ![Folded vs Deployed Wings](docs/ortho_folded_vs_deployed.png) | ![Backlog & KEKA](docs/preview_backlog_keka_v4.png) |",
+        "\n## Installation & Vérification\n",
+        "```powershell\n"
+        ".\\sync_to_saved_games.ps1\n"
+        "python tools\\verify_mod.py\n"
+        "```\n",
+        "- Copier vers `%USERPROFILE%\\Saved Games\\DCS\\Mods\\tech\\NextGen_BVR_Armory` (mod non destructif : les fichiers d'origine de DCS World ne sont jamais modifiés).\n"
+        "- Polaires aérodynamiques calibrées par Mach dans [`mod/Database/polar_profiles.lua`](mod/Database/polar_profiles.lua).\n",
+    ]
+
+    (REPO / "README.md").write_text("\n".join(readme) + "\n", encoding="utf-8")
+    print(f"[OK] Generated {len(weapons)} weapon fiches, {len(ad_units)} air-defense fiches, docs/CATALOG.md, and full visual README.md ({len('\n'.join(readme))} bytes)")
 
 
 if __name__ == "__main__":

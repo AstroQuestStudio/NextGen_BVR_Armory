@@ -1,6 +1,6 @@
 # Tamir Iron Dome Interceptor (NG)
 
-> Retour : [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md)  
+> [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_TOLUN_SDB](NG_TOLUN_SDB.md) · [NG_SAM_IRIST_SLM](NG_SAM_IRIST_SLM.md) →  
 > Catégorie : **SAM & ABM Interceptors** · Fichier source : `mod/Database/weapons_sam_interceptors.lua`
 
 ![Rendu 3D ng_sam_tamir](../renders/ng_sam_tamir.png)
@@ -28,7 +28,11 @@
 ## Polaire Aérodynamique & Modèle de Vol
 
 - **Profil utilisé** : `FM_AAM_WVR` — **High-Alpha HOBS Dogfight Polar**
-- **Détails physiques (`polar_profiles.lua`)** : High-lift / thrust-vectoring dogfight curve (`Cya = 0.62..0.92`, low pitch/yaw inertia `Iy=68`, high roll rate `Mxd=14`).
+- **Détails physiques ([`polar_profiles.lua`](../../mod/Database/polar_profiles.lua))** : High-lift / thrust-vectoring dogfight curve (`Cya = 0.62..0.92`, low pitch/yaw inertia `Iy=68`, high roll rate `Mxd=14`).
+
+| Mach | M0.0 | M0.8 | M1.2 | M2.0 | M3.0 | M4.0 | M5.0 |
+|---|---|---|---|---|---|---|---|
+| **Traînée `Cx0`** | `0.420` | `0.500` | `0.960` | `0.750` | `0.580` | `0.480` | `0.420` |
 
 ## Animations & Modèle 3D
 
