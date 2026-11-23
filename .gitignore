@@ -1,0 +1,10 @@
+# Python & scratch caches
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+*.tmp
+ref_bank/
+*.blend1
+.DS_Store
+Thumbs.db

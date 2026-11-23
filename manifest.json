@@ -1,0 +1,17 @@
+{
+  "name": "NextGen_BVR_Armory",
+  "version": "2.0.0",
+  "dcs_min_version": "2.9",
+  "entry": "mod/entry.lua",
+  "install_target": "%USERPROFILE%/Saved Games/DCS/Mods/tech/NextGen_BVR_Armory",
+  "counts": {
+    "weapons": 118,
+    "loadouts": 125,
+    "edm_shapes": 50,
+    "pbr_textures": 111
+  },
+  "animations": {
+    "draw_arg_25": "Wing / lattice grid-fin fold (0.0 folded on pylon -> 1.0 deployed in flight)",
+    "draw_arg_407": "Continuous pusher-propeller rotation (Shahed-136, IAI Harop, Lancet-3/3M)"
+  }
+}
