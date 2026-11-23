@@ -3,7 +3,7 @@
 > [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_SHAHED_131](NG_SHAHED_131.md) · [NG_PALIANYTSIA](NG_PALIANYTSIA.md) →  
 > Catégorie : **Loitering Munitions & One-Way Drones** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
 
-![Rendu 3D ng_palianytsia_jet](../renders/ng_palianytsia_jet.png)
+![Rendu 3D ng_shahed_238](../renders/ng_shahed_238.png)
 
 ## Fiche Technique
 
@@ -12,7 +12,7 @@
 | **ID Interne** | `NG_SHAHED_238` |
 | **CLSID Pylône** | `{NEXTGEN_SHAHED_238}` |
 | **Nom Court HUD / RWR** | `Shahed238` |
-| **Modèle 3D (`.edm`)** | [`ng_palianytsia_jet.edm`](../../mod/Shapes/ng_palianytsia_jet.edm) |
+| **Modèle 3D (`.edm`)** | [`ng_shahed_238.edm`](../../mod/Shapes/ng_shahed_238.edm) |
 | **Calibre / Diamètre** | `0.340 m` (`340 mm`) |
 | **Longueur** | `3.50 m` |
 | **Masse au Lancement** | `260.0 kg` |

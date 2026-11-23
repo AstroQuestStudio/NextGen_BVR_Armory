@@ -26,6 +26,7 @@ import build_mega_aam_rework as m_aam
 import build_mega_arsenal_v3 as m_v3
 import build_sam_cram_and_backlog_v4 as m_v4
 import build_hq_sam_cram_v5 as m_v5
+import build_missile_rework_v6 as m_v6
 
 
 def clear_scene() -> None:
@@ -298,6 +299,8 @@ def gather_all_79():
         registry[name] = (theme, fn, "x", 145 if grp == "sam" else 200)
     for name, theme, _, fn, grp in m_v5.HQ_MODELS:
         registry[name] = (theme, fn, "x", 135 if grp == "sam" else 200)
+    for name, theme, _, fn in m_v6.WAVE6_MODELS:
+        registry[name] = (theme, fn, "x", 200)
     return registry
 
 
@@ -400,10 +403,12 @@ def main() -> None:
     if missing:
         raise RuntimeError(f"Unmapped EDM shapes: {missing}")
 
-    # Support optional "--filter" (e.g., --only-fixed) to fast-rerender modified groups
+    # Support optional "--only-v6" or "--only-fixed" to fast-rerender modified groups
+    only_v6 = "--only-v6" in sys.argv
     only_fixed = "--only-fixed" in sys.argv
-    fixed_set = {n for n, _, _ in LEGACY_15} | {n for n, _, _, _, g in m_v5.HQ_MODELS if g == "sam"}
-    targets = [s for s in expected if (not only_fixed or s in fixed_set)]
+    v6_set = {n for n, _, _, _ in m_v6.WAVE6_MODELS}
+    fixed_set = v6_set | {n for n, _, _, _, g in m_v5.HQ_MODELS if g == "sam"}
+    targets = [s for s in expected if (s in v6_set if only_v6 else (s in fixed_set if only_fixed else True))]
     total = len(targets)
     for idx, shape in enumerate(targets, 1):
         out = RENDERS_DIR / f"{shape}.png"

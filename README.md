@@ -2,20 +2,20 @@
 
 # NextGen BVR, Strategic & Air Defense Armory v5.0
 
-![DCS World 2.9+](https://img.shields.io/badge/DCS%20World-2.9%2B-1f6feb?style=for-the-badge) ![262 Weapons](https://img.shields.io/badge/Weapons-262-238636?style=for-the-badge) ![11 Air Defenses](https://img.shields.io/badge/Air%20Defenses-11-d29922?style=for-the-badge) ![79 EDM Models](https://img.shields.io/badge/3D%20Models%20(.edm)-79-8957e5?style=for-the-badge) ![159 PBR Maps](https://img.shields.io/badge/2K%20PBR%20Textures-159-da3633?style=for-the-badge)
+![DCS World 2.9+](https://img.shields.io/badge/DCS%20World-2.9%2B-1f6feb?style=for-the-badge) ![262 Weapons](https://img.shields.io/badge/Weapons-262-238636?style=for-the-badge) ![11 Air Defenses](https://img.shields.io/badge/Air%20Defenses-11-d29922?style=for-the-badge) ![81 EDM Models](https://img.shields.io/badge/3D%20Models%20(.edm)-81-8957e5?style=for-the-badge) ![159 PBR Maps](https://img.shields.io/badge/2K%20PBR%20Textures-159-da3633?style=for-the-badge)
 
 
-**[Catalogue Complet (`docs/CATALOG.md`)](docs/CATALOG.md) · [262 Fiches Missiles](docs/missiles/) · [11 Fiches Sol-Air / C-RAM](docs/air-defense/) · [79 Rendus 3D](docs/renders/)**
+**[Catalogue Complet (`docs/CATALOG.md`)](docs/CATALOG.md) · [262 Fiches Missiles](docs/missiles/) · [11 Fiches Sol-Air / C-RAM](docs/air-defense/) · [81 Rendus 3D](docs/renders/)**
 
 
-![NextGen Armory v5.0 HQ Air Defense Showcase](docs/preview_hq_sam_v5.png)
+![NextGen Armory HQ Air Defense Showcase](docs/preview_hq_sam_v5.png)
 
 </div>
 
 ---
 
 
-## Vue d'Ensemble Visuelle — Tous les 79 Modèles 3D (`.edm`)
+## Vue d'Ensemble Visuelle — Tous les 81 Modèles 3D (`.edm`)
 
 
 ### 1. Défenses Sol-Air, Radars AESA & C-RAM (11 Systèmes)
@@ -42,12 +42,12 @@
 ![Sheet 02 AAM & SAM](docs/sheet_02_aam_and_sam_missiles.png)
 
 
-### 3. Missiles de Croisière, Anti-Navires, SEAD, Balistiques & Hypersoniques (23 Modèles)
+### 3. Missiles de Croisière, Anti-Navires, SEAD, Balistiques & Hypersoniques (24 Modèles)
 
 ![Sheet 03 Cruise Naval SEAD Ballistic](docs/sheet_03_cruise_naval_sead_ballistic.png)
 
 
-### 4. Bombes Planantes, Drones, ATGMs, Roquettes & Collection Troll KEKA (17 Modèles)
+### 4. Bombes Planantes, Drones (Shahed-136 & Shahed-238 Jet), ATGMs, Roquettes & KEKA (18 Modèles)
 
 ![Sheet 04 Glide Drones ATGM KEKA](docs/sheet_04_glide_drones_atgm_keka.png)
 
@@ -245,8 +245,8 @@
 | **[DF-21D ASBM Carrier-Killer (NextGen)](docs/missiles/NG_DF_21D.md)** | `NG_DF_21D`<br>`{NEXTGEN_DF_21D}` | [`ng_kinzhal`](docs/renders/ng_kinzhal.png) | M9.5 | 1500 km | 4400 kg / 600.0 kg | `FM_HYPERSONIC` |
 | **[YJ-21 Eagle Strike Ballistic (NG)](docs/missiles/NG_YJ_21.md)** | `NG_YJ_21`<br>`{NEXTGEN_YJ_21}` | [`ng_kinzhal`](docs/renders/ng_kinzhal.png) | M8.0 | 1000 km | 3600 kg / 400.0 kg | `FM_HYPERSONIC` |
 | **[9M723 Iskander-M Air-Launch (NG)](docs/missiles/NG_9M723_ISKANDER.md)** | `NG_9M723_ISKANDER`<br>`{NEXTGEN_9M723_ISKANDER}` | [`ng_iskander_atacms`](docs/renders/ng_iskander_atacms.png) | M6.2 | 500 km | 3200 kg / 480.0 kg | `FM_HYPERSONIC` |
-| **[MGM-168 ATACMS Block IVA Air (NG)](docs/missiles/NG_ATACMS_IVA.md)** | `NG_ATACMS_IVA`<br>`{NEXTGEN_ATACMS_IVA}` | [`ng_iskander_atacms`](docs/renders/ng_iskander_atacms.png) | M4.5 | 300 km | 1670 kg / 227.0 kg | `FM_HYPERSONIC` |
-| **[PrSM Increment 1 Hypersonic (NG)](docs/missiles/NG_PRSM_INC1.md)** | `NG_PRSM_INC1`<br>`{NEXTGEN_PRSM_INC1}` | [`ng_iskander_atacms`](docs/renders/ng_iskander_atacms.png) | M5.8 | 500 km | 980 kg / 120.0 kg | `FM_HYPERSONIC` |
+| **[MGM-168 ATACMS Block IVA Air (NG)](docs/missiles/NG_ATACMS_IVA.md)** | `NG_ATACMS_IVA`<br>`{NEXTGEN_ATACMS_IVA}` | [`ng_prsm_atacms`](docs/renders/ng_prsm_atacms.png) | M4.5 | 300 km | 1670 kg / 227.0 kg | `FM_HYPERSONIC` |
+| **[PrSM Increment 1 Hypersonic (NG)](docs/missiles/NG_PRSM_INC1.md)** | `NG_PRSM_INC1`<br>`{NEXTGEN_PRSM_INC1}` | [`ng_prsm_atacms`](docs/renders/ng_prsm_atacms.png) | M5.8 | 500 km | 980 kg / 120.0 kg | `FM_HYPERSONIC` |
 | **[IAI Rampage Aero-Ballistic (NG)](docs/missiles/NG_IAI_RAMPAGE.md)** | `NG_IAI_RAMPAGE`<br>`{NEXTGEN_IAI_RAMPAGE}` | [`ng_rampage_lora`](docs/renders/ng_rampage_lora.png) | M4.2 | 250 km | 570 kg / 150.0 kg | `FM_HYPERSONIC` |
 | **[IAI Air LORA Long-Range (NextGen)](docs/missiles/NG_AIR_LORA.md)** | `NG_AIR_LORA`<br>`{NEXTGEN_AIR_LORA}` | [`ng_rampage_lora`](docs/renders/ng_rampage_lora.png) | M5.0 | 430 km | 1600 kg / 570.0 kg | `FM_HYPERSONIC` |
 | **[Kh-15S Raduga Mach 5 ASM (NextGen)](docs/missiles/NG_KH_15S.md)** | `NG_KH_15S`<br>`{NEXTGEN_KH_15S}` | [`ng_rampage_lora`](docs/renders/ng_rampage_lora.png) | M5.0 | 300 km | 1200 kg / 150.0 kg | `FM_HYPERSONIC` |
@@ -362,7 +362,7 @@
 |---|---|---|---|---|---|---|
 | **[Shahed-136 / Geran-2 Delta (NG)](docs/missiles/NG_SHAHED_136.md)** | `NG_SHAHED_136`<br>`{NEXTGEN_SHAHED_136}` | [`ng_shahed_136`](docs/renders/ng_shahed_136.png) | M0.25 | 1800 km | 200 kg / 50.0 kg | `FM_LOITER_DRONE` |
 | **[Shahed-131 / Geran-1 Mini-Delta](docs/missiles/NG_SHAHED_131.md)** | `NG_SHAHED_131`<br>`{NEXTGEN_SHAHED_131}` | [`ng_shahed_136`](docs/renders/ng_shahed_136.png) | M0.24 | 900 km | 135 kg / 20.0 kg | `FM_LOITER_DRONE` |
-| **[Shahed-238 / Geran-3 Turbojet (NG)](docs/missiles/NG_SHAHED_238.md)** | `NG_SHAHED_238`<br>`{NEXTGEN_SHAHED_238}` | [`ng_palianytsia_jet`](docs/renders/ng_palianytsia_jet.png) | M0.72 | 800 km | 260 kg / 50.0 kg | `FM_CRUISE_STEALTH` |
+| **[Shahed-238 / Geran-3 Turbojet (NG)](docs/missiles/NG_SHAHED_238.md)** | `NG_SHAHED_238`<br>`{NEXTGEN_SHAHED_238}` | [`ng_shahed_238`](docs/renders/ng_shahed_238.png) | M0.72 | 800 km | 260 kg / 50.0 kg | `FM_CRUISE_STEALTH` |
 | **[Palianytsia Turbojet Drone (NG)](docs/missiles/NG_PALIANYTSIA.md)** | `NG_PALIANYTSIA`<br>`{NEXTGEN_PALIANYTSIA}` | [`ng_palianytsia_jet`](docs/renders/ng_palianytsia_jet.png) | M0.75 | 700 km | 320 kg / 65.0 kg | `FM_CRUISE_STEALTH` |
 | **[Peklo Jet Drone-Missile (NextGen)](docs/missiles/NG_PEKLO.md)** | `NG_PEKLO`<br>`{NEXTGEN_PEKLO}` | [`ng_palianytsia_jet`](docs/renders/ng_palianytsia_jet.png) | M0.7 | 700 km | 220 kg / 45.0 kg | `FM_CRUISE_STEALTH` |
 | **[AQ-400 Scythe Long-Range Drone](docs/missiles/NG_AQ_400_SCYTHE.md)** | `NG_AQ_400_SCYTHE`<br>`{NEXTGEN_AQ_400_SCYTHE}` | [`ng_palianytsia_jet`](docs/renders/ng_palianytsia_jet.png) | M0.28 | 750 km | 150 kg / 42.0 kg | `FM_LOITER_DRONE` |

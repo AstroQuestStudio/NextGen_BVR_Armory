@@ -69,7 +69,7 @@ SHEETS = [
     ),
     (
         "sheet_03_cruise_naval_sead_ballistic.png",
-        "CRUISE, ANTI-SHIP, SEAD & HYPERSONIC / BALLISTIC ARSENAL (23 EDM MODELS)",
+        "CRUISE, ANTI-SHIP, SEAD & HYPERSONIC / BALLISTIC ARSENAL (24 EDM MODELS)",
         5,
         [
             ("ng_tomahawk_v",      "BGM-109 Tomahawk Blk IV/V"),
@@ -92,14 +92,15 @@ SHEETS = [
             ("ng_df17_waverider",  "DF-17 Waverider / DF-21D"),
             ("ng_zircon",          "3M22 Zircon / YJ-21 Hypersonic"),
             ("ng_hypersonic",      "HALO Hypersonic Anti-Ship"),
-            ("ng_iskander_atacms", "Iskander / ATACMS / Tayfun / KN-23"),
+            ("ng_iskander_atacms", "9M723 Iskander / Tayfun / KN-23"),
+            ("ng_prsm_atacms",     "ATACMS Block IVA / PrSM Inc 1"),
             ("ng_rampage_lora",    "Rampage / Air LORA / ROCKS"),
             ("ng_gmlrs_m31",       "M31A2 / ER-GMLRS / Tornado-S"),
         ],
     ),
     (
         "sheet_04_glide_drones_atgm_keka.png",
-        "SMART GLIDE BOMBS, DRONES, ATGMs, ROCKETS & KEKA TROLL COLLECTION (17 EDM MODELS)",
+        "SMART GLIDE BOMBS, DRONES, ATGMs, ROCKETS & KEKA TROLL COLLECTION (18 EDM MODELS)",
         5,
         [
             ("ng_gbu57_mop",       "GBU-57A/B 30,000lb MOP"),
@@ -109,8 +110,9 @@ SHEETS = [
             ("ng_glide_sdb",       "GBU-53 / GBU-39 / SPEAR 3 / Tolun"),
             ("ng_aasm_hammer",     "AASM-250/500/1000 Hammer"),
             ("ng_durandal_runway", "BLU-107 Durandal / ODAB-500"),
-            ("ng_shahed_136",      "Shahed-136 / 131 / KUB-BLA"),
-            ("ng_palianytsia_jet", "Palianytsia / Peklo / Shahed-238"),
+            ("ng_shahed_136",      "Shahed-136 / 131 / KUB-BLA (Prop)"),
+            ("ng_shahed_238",      "Shahed-238 / Geran-3 (Turbojet)"),
+            ("ng_palianytsia_jet", "Palianytsia / Peklo Jet Missile"),
             ("ng_harop",           "IAI Harop / Harpy NG / ALTIUS"),
             ("ng_loitering_x",     "Lancet-3/3M / HERO / Kargu / SB600"),
             ("ng_atgm_quad",       "JAGM / Brimstone 2-3 / Spike / Kornet"),

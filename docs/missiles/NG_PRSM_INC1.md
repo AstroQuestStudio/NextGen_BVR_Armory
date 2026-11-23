@@ -3,7 +3,7 @@
 > [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_ATACMS_IVA](NG_ATACMS_IVA.md) · [NG_IAI_RAMPAGE](NG_IAI_RAMPAGE.md) →  
 > Catégorie : **SEAD / Anti-Radar & Powered Precision** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
 
-![Rendu 3D ng_iskander_atacms](../renders/ng_iskander_atacms.png)
+![Rendu 3D ng_prsm_atacms](../renders/ng_prsm_atacms.png)
 
 ## Fiche Technique
 
@@ -12,7 +12,7 @@
 | **ID Interne** | `NG_PRSM_INC1` |
 | **CLSID Pylône** | `{NEXTGEN_PRSM_INC1}` |
 | **Nom Court HUD / RWR** | `PrSM-1` |
-| **Modèle 3D (`.edm`)** | [`ng_iskander_atacms.edm`](../../mod/Shapes/ng_iskander_atacms.edm) |
+| **Modèle 3D (`.edm`)** | [`ng_prsm_atacms.edm`](../../mod/Shapes/ng_prsm_atacms.edm) |
 | **Calibre / Diamètre** | `0.430 m` (`430 mm`) |
 | **Longueur** | `4.00 m` |
 | **Masse au Lancement** | `980.0 kg` |

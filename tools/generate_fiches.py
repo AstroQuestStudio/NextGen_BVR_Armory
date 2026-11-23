@@ -399,9 +399,13 @@ def main() -> None:
     for w in weapons:
         grouped.setdefault(str(w["_category"]), []).append(w)
 
+    total_shapes = len(list((MOD / "Shapes").glob("*.edm")))
+    total_renders = len(list(RENDERS_DIR.glob("*.png")))
+    total_tex = len(list((MOD / "Textures" / "NextGen_BVR_Armory").glob("*.png")))
+
     lines = [
-        "# Catalogue Complet NextGen_BVR_Armory v5.0\n",
-        f"> **Total vérifié** : **{len(weapons)} armes individuelles** + **{len(ad_units)} systèmes sol-air / C-RAM** + **79 modèles 3D `.edm`** + **79 rendus studio**.\n",
+        "# Catalogue Complet NextGen_BVR_Armory v6.0\n",
+        f"> **Total vérifié** : **{len(weapons)} armes individuelles** + **{len(ad_units)} systèmes sol-air / C-RAM** + **{total_shapes} modèles 3D `.edm`** + **{total_renders} rendus studio**.\n",
         "> Retour à la présentation : [README.md](../README.md)\n",
         "\n## Sommaire Rapide\n",
         f"- [Systèmes Sol-Air, Radars & C-RAM ({len(ad_units)})](#systèmes-sol-air-radars--c-ram-{len(ad_units)})",
@@ -455,16 +459,16 @@ def main() -> None:
         "![DCS World 2.9+](https://img.shields.io/badge/DCS%20World-2.9%2B-1f6feb?style=for-the-badge) "
         "![262 Weapons](https://img.shields.io/badge/Weapons-262-238636?style=for-the-badge) "
         "![11 Air Defenses](https://img.shields.io/badge/Air%20Defenses-11-d29922?style=for-the-badge) "
-        "![79 EDM Models](https://img.shields.io/badge/3D%20Models%20(.edm)-79-8957e5?style=for-the-badge) "
-        "![159 PBR Maps](https://img.shields.io/badge/2K%20PBR%20Textures-159-da3633?style=for-the-badge)\n",
-        "\n**[Catalogue Complet (`docs/CATALOG.md`)](docs/CATALOG.md) · "
-        "[262 Fiches Missiles](docs/missiles/) · "
-        "[11 Fiches Sol-Air / C-RAM](docs/air-defense/) · "
-        "[79 Rendus 3D](docs/renders/)**\n",
-        "\n![NextGen Armory v5.0 HQ Air Defense Showcase](docs/preview_hq_sam_v5.png)\n",
+        f"![{total_shapes} EDM Models](https://img.shields.io/badge/3D%20Models%20(.edm)-{total_shapes}-8957e5?style=for-the-badge) "
+        f"![{total_tex} PBR Maps](https://img.shields.io/badge/2K%20PBR%20Textures-{total_tex}-da3633?style=for-the-badge)\n",
+        f"\n**[Catalogue Complet (`docs/CATALOG.md`)](docs/CATALOG.md) · "
+        f"[{len(weapons)} Fiches Missiles](docs/missiles/) · "
+        f"[{len(ad_units)} Fiches Sol-Air / C-RAM](docs/air-defense/) · "
+        f"[{total_renders} Rendus 3D](docs/renders/)**\n",
+        "\n![NextGen Armory HQ Air Defense Showcase](docs/preview_hq_sam_v5.png)\n",
         "</div>\n",
         "---\n",
-        "\n## Vue d'Ensemble Visuelle — Tous les 79 Modèles 3D (`.edm`)\n",
+        f"\n## Vue d'Ensemble Visuelle — Tous les {total_shapes} Modèles 3D (`.edm`)\n",
         "\n### 1. Défenses Sol-Air, Radars AESA & C-RAM (11 Systèmes)\n",
         "![Sheet 01 SAM & C-RAM](docs/sheet_01_sam_and_cram.png)\n",
         "\n| Aperçu | Système Sol-Air (Fiche 1-par-1) | Radar / Rôle | Portée / Plafond | Armement / Cadence |",
@@ -486,9 +490,9 @@ def main() -> None:
     readme += [
         "\n### 2. Missiles Air-Air (BVR / WVR / Ramjet) & Intercepteurs SAM (28 Modèles)\n",
         "![Sheet 02 AAM & SAM](docs/sheet_02_aam_and_sam_missiles.png)\n",
-        "\n### 3. Missiles de Croisière, Anti-Navires, SEAD, Balistiques & Hypersoniques (23 Modèles)\n",
+        "\n### 3. Missiles de Croisière, Anti-Navires, SEAD, Balistiques & Hypersoniques (24 Modèles)\n",
         "![Sheet 03 Cruise Naval SEAD Ballistic](docs/sheet_03_cruise_naval_sead_ballistic.png)\n",
-        "\n### 4. Bombes Planantes, Drones, ATGMs, Roquettes & Collection Troll KEKA (17 Modèles)\n",
+        "\n### 4. Bombes Planantes, Drones (Shahed-136 & Shahed-238 Jet), ATGMs, Roquettes & KEKA (18 Modèles)\n",
         "![Sheet 04 Glide Drones ATGM KEKA](docs/sheet_04_glide_drones_atgm_keka.png)\n",
         "\n---\n",
         "\n## Catalogue Intégral des 262 Armes (Déplier Chaque Catégorie)\n",

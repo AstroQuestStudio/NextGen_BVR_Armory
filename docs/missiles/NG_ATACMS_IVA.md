@@ -3,7 +3,7 @@
 > [Catalogue Général](../CATALOG.md) · [Accueil Mod](../../README.md) · ← [NG_9M723_ISKANDER](NG_9M723_ISKANDER.md) · [NG_PRSM_INC1](NG_PRSM_INC1.md) →  
 > Catégorie : **SEAD / Anti-Radar & Powered Precision** · Fichier source : `mod/Database/weapons_arsenal_ag.lua`
 
-![Rendu 3D ng_iskander_atacms](../renders/ng_iskander_atacms.png)
+![Rendu 3D ng_prsm_atacms](../renders/ng_prsm_atacms.png)
 
 ## Fiche Technique
 
@@ -12,7 +12,7 @@
 | **ID Interne** | `NG_ATACMS_IVA` |
 | **CLSID Pylône** | `{NEXTGEN_ATACMS_IVA}` |
 | **Nom Court HUD / RWR** | `ATACMS4A` |
-| **Modèle 3D (`.edm`)** | [`ng_iskander_atacms.edm`](../../mod/Shapes/ng_iskander_atacms.edm) |
+| **Modèle 3D (`.edm`)** | [`ng_prsm_atacms.edm`](../../mod/Shapes/ng_prsm_atacms.edm) |
 | **Calibre / Diamètre** | `0.610 m` (`610 mm`) |
 | **Longueur** | `3.98 m` |
 | **Masse au Lancement** | `1670.0 kg` |
