@@ -158,6 +158,7 @@ local FOLDING_SHAPES = {
     ng_kalibr_3m54    = true,
     ng_javelin_top    = true,
     ng_loitering_x    = true,
+    ng_tomahawk_v     = true,
 }
 
 local tac_attrs = {}
@@ -314,6 +315,24 @@ local tac_specs = {
     { id = "NG_PL_10E",        clsid = "{NEXTGEN_PL_10E}",        role = "aam", shape = "ng_python5",      caliber = 0.160, length = 3.00, display_name = "PL-10E HOBS WVR (NextGen)",           short_name = "PL-10E",  mass = 105.0, mach_max = 4.0, range_max = 35000,  fuel_mass = 34.0,  impulse = 245, burn_time = 5.2,  warhead_mass = 10.0,  picture = "aim9x.png",   head_type = 1, life_time = 75 },
     { id = "NG_MAGIC_3",       clsid = "{NEXTGEN_MAGIC_3}",       role = "aam", shape = "ng_asraam_sleek", caliber = 0.157, length = 2.85, display_name = "Matra Magic III NG (NextGen)",        short_name = "Magic-3", mass = 92.0,  mach_max = 3.5, range_max = 38000,  fuel_mass = 32.0,  impulse = 245, burn_time = 5.0,  warhead_mass = 12.5,  picture = "magic.png",   head_type = 1, life_time = 75 },
     { id = "NG_SKY_SWORD_2C",  clsid = "{NEXTGEN_SKY_SWORD_2C}",  role = "aam", shape = "ng_aim120cd",     caliber = 0.190, length = 3.60, display_name = "TC-2C Sky Sword II BVR (NextGen)",    short_name = "TC-2C",   mass = 184.0, mach_max = 4.8, range_max = 110000, fuel_mass = 62.0,  impulse = 250, burn_time = 8.5,  warhead_mass = 22.0,  picture = "aim120c.png", life_time = 150 },
+
+    -- 6. v5 Backlog ATGM, Light Naval, Dual-Mode Maverick & Micro Smart Glide (+16)
+    { id = "NG_KORNET_EM",     clsid = "{NEXTGEN_KORNET_EM}",     role = "ag",     shape = "ng_atgm_quad",    caliber = 0.152, length = 1.20, display_name = "9M133 Kornet-EM 10km Tandem (NG)",   short_name = "KornetEM",mass = 33.0,  mach_max = 1.1, range_max = 10000,  fuel_mass = 8.0,   impulse = 225, burn_time = 14.0, warhead_mass = 7.0,  picture = "vikhr.png" },
+    { id = "NG_PARS_3_LR",     clsid = "{NEXTGEN_PARS_3_LR}",     role = "ag",     shape = "ng_atgm_quad",    caliber = 0.159, length = 1.60, display_name = "MBDA PARS 3 LR Fire-Forget (NG)",     short_name = "PARS3-LR",mass = 49.0,  mach_max = 1.2, range_max = 8000,   fuel_mass = 11.0,  impulse = 230, burn_time = 10.0, warhead_mass = 9.0,  picture = "agm114.png" },
+    { id = "NG_HJ_10",         clsid = "{NEXTGEN_HJ_10}",         role = "ag",     shape = "ng_atgm_quad",    caliber = 0.170, length = 1.85, display_name = "Norinco HJ-10 Heavy NLOS ATGM",       short_name = "HJ-10",   mass = 105.0, mach_max = 1.0, range_max = 15000,  fuel_mass = 28.0,  impulse = 235, burn_time = 24.0, warhead_mass = 18.0, picture = "agm114.png" },
+    { id = "NG_HJ_12",         clsid = "{NEXTGEN_HJ_12}",         role = "ag",     shape = "ng_javelin_top",  caliber = 0.135, length = 1.25, display_name = "Norinco HJ-12 Top-Attack Pod (NG)",   short_name = "HJ-12",   mass = 17.0,  mach_max = 1.1, range_max = 5000,   fuel_mass = 3.8,   impulse = 220, burn_time = 8.0,  warhead_mass = 7.5,  picture = "agm114.png" },
+    { id = "NG_UMTAS_L",       clsid = "{NEXTGEN_UMTAS_L}",       role = "ag",     shape = "ng_atgm_quad",    caliber = 0.160, length = 1.75, display_name = "Roketsan L-UMTAS Laser ATGM (NG)",    short_name = "L-UMTAS", mass = 37.5,  mach_max = 1.2, range_max = 16000,  fuel_mass = 10.0,  impulse = 235, burn_time = 16.0, warhead_mass = 8.0,  picture = "agm114.png" },
+    { id = "NG_OMTAS",         clsid = "{NEXTGEN_OMTAS}",         role = "ag",     shape = "ng_javelin_top",  caliber = 0.160, length = 1.80, display_name = "Roketsan OMTAS IIR Pod-ATGM (NG)",    short_name = "OMTAS",   mass = 35.0,  mach_max = 1.1, range_max = 6000,   fuel_mass = 8.0,   impulse = 225, burn_time = 10.0, warhead_mass = 8.0,  picture = "agm114.png" },
+    { id = "NG_STUGNA_P_AIR",  clsid = "{NEXTGEN_STUGNA_P}",      role = "ag",     shape = "ng_javelin_top",  caliber = 0.130, length = 1.36, display_name = "Stugna-P / Skif Air Laser ATGM",      short_name = "StugnaP", mass = 16.0,  mach_max = 1.1, range_max = 6000,   fuel_mass = 4.0,   impulse = 225, burn_time = 11.0, warhead_mass = 6.5,  picture = "vikhr.png" },
+    { id = "NG_AGM_65E2",      clsid = "{NEXTGEN_AGM_65E2}",      role = "ag",     shape = "ng_kh38_grom",    caliber = 0.305, length = 2.49, display_name = "AGM-65E2/L Laser Maverick (NG)",      short_name = "AGM65E2", mass = 293.0, mach_max = 1.4, range_max = 28000,  fuel_mass = 75.0,  impulse = 238, burn_time = 7.0,  warhead_mass = 136.0,picture = "agm65d.png" },
+    { id = "NG_SEA_VENOM",     clsid = "{NEXTGEN_SEA_VENOM}",     role = "cruise", shape = "ng_exocet_am39",  caliber = 0.200, length = 2.50, display_name = "MBDA Sea Venom / ANL Anti-Ship",      short_name = "SeaVenom",mass = 120.0, mach_max = 0.90,range_max = 45000,  fuel_mass = 28.0,  impulse = 2600,burn_time = 180.0,warhead_mass = 30.0, picture = "agm84d.png", life_time = 500 },
+    { id = "NG_MARTE_ER",      clsid = "{NEXTGEN_MARTE_ER}",      role = "cruise", shape = "ng_kh35u",        caliber = 0.316, length = 3.60, display_name = "MBDA Marte ER 100km Turbojet (NG)",   short_name = "Marte-ER",mass = 340.0, mach_max = 0.92,range_max = 110000, fuel_mass = 90.0,  impulse = 2800,burn_time = 450.0,warhead_mass = 75.0, picture = "agm84d.png", life_time = 900 },
+    { id = "NG_TESEO_MK2E",    clsid = "{NEXTGEN_TESEO_MK2E}",    role = "cruise", shape = "ng_tomahawk_v",   caliber = 0.460, length = 5.05, display_name = "MBDA Teseo Mk2/E Otomat AShM (NG)",    short_name = "Teseo2E", mass = 700.0, mach_max = 0.95,range_max = 350000, fuel_mass = 200.0, impulse = 3000,burn_time = 1100.0,warhead_mass = 180.0,picture = "agm84d.png", life_time = 1600 },
+    { id = "NG_PENGUIN_MK3",   clsid = "{NEXTGEN_PENGUIN_MK3}",   role = "cruise", shape = "ng_nsm_jsm",      caliber = 0.280, length = 3.18, display_name = "Kongsberg Penguin Mk 3 IIR AShM",     short_name = "Penguin3",mass = 370.0, mach_max = 0.90,range_max = 55000,  fuel_mass = 85.0,  impulse = 250, burn_time = 24.0, warhead_mass = 120.0,picture = "agm84d.png", life_time = 600 },
+    { id = "NG_BLUE_SPEAR",    clsid = "{NEXTGEN_BLUE_SPEAR}",    role = "cruise", shape = "ng_nsm_jsm",      caliber = 0.380, length = 5.00, display_name = "Blue Spear 5G Sea-Skimmer (NG)",      short_name = "BlueSpr", mass = 950.0, mach_max = 0.94,range_max = 290000, fuel_mass = 260.0, impulse = 2900,burn_time = 950.0,warhead_mass = 200.0,picture = "agm84d.png", life_time = 1500 },
+    { id = "NG_MAM_L",         clsid = "{NEXTGEN_MAM_L}",         role = "glide",  shape = "ng_glide_sdb",    caliber = 0.160, length = 1.00, display_name = "Roketsan MAM-L Smart Glide (NG)",     short_name = "MAM-L",   mass = 22.0,  mach_max = 0.85,range_max = 18000,  fuel_mass = 1.0,   impulse = 1600,burn_time = 180.0,warhead_mass = 10.0, picture = "gbu38.png" },
+    { id = "NG_MAM_T",         clsid = "{NEXTGEN_MAM_T}",         role = "glide",  shape = "ng_glide_sdb",    caliber = 0.230, length = 1.40, display_name = "Roketsan MAM-T 95kg Smart Glide",     short_name = "MAM-T",   mass = 94.0,  mach_max = 0.90,range_max = 45000,  fuel_mass = 2.0,   impulse = 1800,burn_time = 240.0,warhead_mass = 45.0, picture = "gbu38.png" },
+    { id = "NG_TOLUN_SDB",     clsid = "{NEXTGEN_TOLUN_SDB}",     role = "glide",  shape = "ng_glide_sdb",    caliber = 0.170, length = 1.80, display_name = "ASELSAN Tolun GPS/IIR SDB (NG)",      short_name = "Tolun",   mass = 139.0, mach_max = 0.95,range_max = 102000, fuel_mass = 2.5,   impulse = 1800,burn_time = 300.0,warhead_mass = 95.0, picture = "gbu38.png" },
 }
 
 local tac_clsids = {
@@ -394,5 +413,23 @@ declare_loadout({
     },
 })
 table.insert(tac_clsids.ag_all, "{NEXTGEN_JAVELIN_4X}")
+
+declare_loadout({
+    category = CAT_MISSILES,
+    CLSID = "{NEXTGEN_TOLUN_4X}",
+    Picture = "gbu38.png",
+    displayName = _("4x ASELSAN Tolun Smart SDB Rack (NextGen)"),
+    Weight = 580.0,
+    Cx_pil = 0.0034,
+    Count = 4,
+    attribute = tac_attrs["NG_TOLUN_SDB"],
+    Elements = {
+        { ShapeName = "ng_glide_sdb", Position = { 0, -0.14, -0.16 } },
+        { ShapeName = "ng_glide_sdb", Position = { 0, -0.14,  0.16 } },
+        { ShapeName = "ng_glide_sdb", Position = { 0, -0.34, -0.16 } },
+        { ShapeName = "ng_glide_sdb", Position = { 0, -0.34,  0.16 } },
+    },
+})
+table.insert(tac_clsids.ag_all, "{NEXTGEN_TOLUN_4X}")
 
 return tac_clsids

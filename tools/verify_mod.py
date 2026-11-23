@@ -1,4 +1,4 @@
-"""Verify NextGen_BVR_Armory v3.0 Lua syntax, shape bindings, SAM units, CLSID uniqueness, and PBR textures."""
+"""Verify NextGen_BVR_Armory v5.0 Lua syntax, shape bindings, SAM units, CLSID uniqueness, and PBR textures."""
 
 from pathlib import Path
 import re

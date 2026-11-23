@@ -5,8 +5,8 @@ declare_plugin("NextGen_BVR_Armory", {
     shortName     = "NextGen_BVR_Armory",
     state         = "installed",
     developerName = "DCS-Modding AI Lab",
-    version       = "3.0.0",
-    info          = _("NextGen Armory v3.0: Calibrated Mach-indexed DCS polars + 170+ air/ground weapons, KEKA Aerospace Troposphere troll rockets, and animated Surface Air Defenses (Centurion C-RAM, Iron Dome 20-cell + EL/M-2084, IRIS-T SLM, SAMP/T Aster 30, Pantsir-SM, Patriot PAC-3 MSE & KEKA Pad)."),
+    version       = "5.0.0",
+    info          = _("NextGen Armory v5.0: Calibrated Mach-indexed DCS polars + 260+ air/ground/naval/ABM/drone weapons (Tomahawk Blk V, GMLRS, THAAD, S-400 40N6, KEKA Njiwa-1) + 11 high-detail animated SAM & C-RAM vehicles (Centurion C-RAM, Iron Dome 5x4 + EL/M-2084, IRIS-T SLM + TRML-4D, SAMP/T, Pantsir-SM, Patriot PAC-3, THAAD, S-400 & KEKA Pad)."),
 })
 
 mount_vfs_model_path(current_mod_path .. "/Shapes")

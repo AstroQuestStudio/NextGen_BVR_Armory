@@ -312,7 +312,7 @@ local function register_air_defenses(sam_weapons)
                 distanceMax = 45000,
                 max_trg_alt = 20000,
                 min_trg_alt = 5,
-                depends_on_unit = { { { "self", 1 } }, { { "self", 2 } }, { { "self", 3 } } },
+                depends_on_unit = { { { "self", 1 } }, { { "self", 2 } }, { { "self", 3 } }, { { "NG_TRML_4D_Radar" } } },
                 sensor = {},
                 BR = make_missile_br(8),
                 PL = {
@@ -628,6 +628,163 @@ local function register_air_defenses(sam_weapons)
                 },
             },
         },
+    })
+
+    -- =====================================================================
+    -- 9. Hensoldt TRML-4D C-Band AESA Search & Track Radar (IRIS-T SLM)
+    -- =====================================================================
+    base_vehicle_skeleton({
+        id = "NG_TRML_4D_Radar",
+        display_name = "TRML-4D AESA Air Surveillance Radar (NextGen)",
+        short_name = "TRML-4D",
+        shape = "ng_trml_4d_radar",
+        det_range = 250000,
+        threat_range = 0,
+        max_alt = 40000,
+        max_speed = 70.0,
+        radar_period = 1.4,
+        anim_args = { locator_rotation = 11 },
+        sensors = { RADAR = "NASAMS_Radar_MPQ64F1" },
+        tags = { "Air Defence", "SAM SR" },
+        mapclass = "P0091000083",
+        attribute = {
+            wsType_Ground, wsType_SAM, wsType_Radar, WSTYPE_PLACEHOLDER,
+            "SAM SR", "EWR", "Datalink", "All", "Ground Units", "Vehicles",
+            "Ground vehicles", "NonAndLightArmoredUnits", "NonArmoredUnits",
+            "Air Defence", "SAM related", "SAM elements",
+        },
+        ws = {
+            maxTargetDetectionRange = 250000,
+            radar_type = 101,
+            searchRadarFrequencies = { { 4000000000, 8000000000 } },
+            searchRadarMaxElevation = math.rad(70),
+            make_radar_channel({ ln_type = 101, dist_max = 250000, reaction = 1.2, refl_limit = 0.005, max_alt = 40000 }),
+            make_radar_channel({ ln_type = 101, dist_max = 250000, reaction = 1.2, refl_limit = 0.005, max_alt = 40000 }),
+        },
+    })
+
+    -- =====================================================================
+    -- 10. THAAD 8-Tube HEMTT Exo-Atmospheric ABM Launcher
+    -- =====================================================================
+    local thaad_ws = {
+        maxTargetDetectionRange = 240000,
+        radar_type = 102,
+        searchRadarFrequencies = { { 8000000000, 12000000000 } },
+    }
+    for _ = 1, 4 do
+        table.insert(thaad_ws, make_radar_channel({ dist_max = 240000, reaction = 2.0, refl_limit = 0.008, max_alt = 150000 }))
+    end
+    table.insert(thaad_ws, {
+        center = "CENTER_TOWER",
+        pointer = "POINT_SIGHT_01",
+        angles = { { math.pi, -math.pi, 0, math.rad(88) } },
+        LN = {
+            {
+                type = 4,
+                reactionTime = 2.0,
+                reflection_limit = 0.008,
+                distanceMin = 5000,
+                distanceMax = 200000,
+                max_trg_alt = 150000,
+                min_trg_alt = 500,
+                depends_on_unit = { { { "self", 1 } }, { { "self", 2 } }, { { "self", 3 } }, { { "self", 4 } }, { { "Patriot str" } } },
+                sensor = {},
+                BR = make_missile_br(8),
+                PL = {
+                    {
+                        type_ammunition = sam_weapons["NG_SAM_THAAD"].wsTypeOfWeapon,
+                        name_ammunition = sam_weapons["NG_SAM_THAAD"].user_name,
+                        ammo_capacity = 8,
+                        portionAmmoCapacity = 8,
+                        reload_time = 1200,
+                        shot_delay = 1.0,
+                    },
+                },
+            },
+        },
+    })
+    base_vehicle_skeleton({
+        id = "NG_THAAD_Launcher",
+        display_name = "THAAD M1120 8-Tube Exo-ABM TEL (NextGen)",
+        short_name = "THAAD",
+        shape = "ng_thaad_ln",
+        det_range = 240000,
+        threat_range = 200000,
+        threat_min = 5000,
+        max_alt = 150000,
+        max_speed = 65.0,
+        sensors = { RADAR = "Patriot str" },
+        tags = { "Air Defence", "SAM" },
+        attribute = {
+            wsType_Ground, wsType_SAM, wsType_Miss, WSTYPE_PLACEHOLDER,
+            "AA_missile", "LR SAM", "SAM SR", "SAM TR", "Datalink",
+            "All", "Ground Units", "Vehicles", "Ground vehicles",
+            "NonAndLightArmoredUnits", "NonArmoredUnits",
+            "Air Defence", "SAM related", "SAM elements", "Armed Air Defence",
+        },
+        ws = thaad_ws,
+    })
+
+    -- =====================================================================
+    -- 11. S-400 Triumf 5P85SM2 4-Tube 40N6 Long-Range ABM TEL
+    -- =====================================================================
+    local s400_ws = {
+        maxTargetDetectionRange = 400000,
+        radar_type = 102,
+        searchRadarFrequencies = { { 2000000000, 4000000000 } },
+    }
+    for _ = 1, 4 do
+        table.insert(s400_ws, make_radar_channel({ dist_max = 400000, reaction = 2.0, refl_limit = 0.01, max_alt = 35000 }))
+    end
+    table.insert(s400_ws, {
+        center = "CENTER_TOWER",
+        pointer = "POINT_SIGHT_01",
+        angles = { { math.pi, -math.pi, 0, math.rad(90) } },
+        LN = {
+            {
+                type = 4,
+                reactionTime = 2.0,
+                reflection_limit = 0.01,
+                distanceMin = 5000,
+                distanceMax = 380000,
+                max_trg_alt = 35000,
+                min_trg_alt = 10,
+                depends_on_unit = { { { "self", 1 } }, { { "self", 2 } }, { { "self", 3 } }, { { "self", 4 } } },
+                sensor = {},
+                BR = make_missile_br(4),
+                PL = {
+                    {
+                        type_ammunition = sam_weapons["NG_SAM_40N6"].wsTypeOfWeapon,
+                        name_ammunition = sam_weapons["NG_SAM_40N6"].user_name,
+                        ammo_capacity = 4,
+                        portionAmmoCapacity = 4,
+                        reload_time = 1400,
+                        shot_delay = 1.2,
+                    },
+                },
+            },
+        },
+    })
+    base_vehicle_skeleton({
+        id = "NG_S400_TEL",
+        display_name = "S-400 Triumf 5P85SM2 40N6 TEL (NextGen)",
+        short_name = "S-400-TEL",
+        shape = "ng_s400_tel",
+        det_range = 400000,
+        threat_range = 380000,
+        threat_min = 5000,
+        max_alt = 35000,
+        max_speed = 60.0,
+        sensors = { RADAR = "Tor 9A331" },
+        tags = { "Air Defence", "SAM" },
+        attribute = {
+            wsType_Ground, wsType_SAM, wsType_Miss, WSTYPE_PLACEHOLDER,
+            "AA_missile", "LR SAM", "SAM SR", "SAM TR", "Datalink",
+            "All", "Ground Units", "Vehicles", "Ground vehicles",
+            "NonAndLightArmoredUnits", "NonArmoredUnits",
+            "Air Defence", "SAM related", "SAM elements", "Armed Air Defence",
+        },
+        ws = s400_ws,
     })
 end
 
