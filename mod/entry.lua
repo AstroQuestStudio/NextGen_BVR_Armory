@@ -1,20 +1,28 @@
 declare_plugin("NextGen_BVR_Armory", {
     installed     = true,
     dirName       = current_mod_path,
-    displayName   = _("Next-Gen BVR & WVR Armory"),
+    displayName   = _("Next-Gen BVR, Strategic & Air Defense Armory"),
     shortName     = "NextGen_BVR_Armory",
     state         = "installed",
     developerName = "DCS-Modding AI Lab",
-    version       = "2.0.0",
-    info          = _("NextGen BVR & Strategic Armory v2.0: Photo-faithful 3D models & 2K PBR textures across BVR/WVR AAMs & sub-variants (AIM-120C5/C7/C8/D3, AIM-260, AIM-174B, PL-12A, PL-15/15E, R-77-1 grid-fins, R-77M, R-37M, IRIS-T/SL, Python-4/5, R-74M2), Ballistic (Kinzhal, ARRW, YJ-21, Rampage, Air LORA), Anti-Ship (Exocet AM39, Kh-35U/UE, NSM/JSM, Kh-22N/32, 3M22 Zircon), SEAD (AARGM-ER, Kh-58UShKE, ALARM, SPEAR-EW), Bunker-Buster (GBU-57A/B MOP), Cruise & Glide (SCALP-EG, TAURUS, SPICE, UMPK, UMPB) & Drones (Shahed-136, IAI Harop, Lancet-3/3M)."),
+    version       = "3.0.0",
+    info          = _("NextGen Armory v3.0: Calibrated Mach-indexed DCS polars + 170+ air/ground weapons, KEKA Aerospace Troposphere troll rockets, and animated Surface Air Defenses (Centurion C-RAM, Iron Dome 20-cell + EL/M-2084, IRIS-T SLM, SAMP/T Aster 30, Pantsir-SM, Patriot PAC-3 MSE & KEKA Pad)."),
 })
 
 mount_vfs_model_path(current_mod_path .. "/Shapes")
 mount_vfs_texture_path(current_mod_path .. "/Textures/NextGen_BVR_Armory")
 
+-- 1. Load Air-to-Air, Heavy Air-to-Ground, Tactical & Ground SAM Interceptors
 local nextgen_clsids = dofile(current_mod_path .. "/Database/weapons_nextgen.lua")
-local ag_clsids = dofile(current_mod_path .. "/Database/weapons_arsenal_ag.lua")
-local tac_clsids = dofile(current_mod_path .. "/Database/weapons_tactical_30.lua")
+local ag_clsids      = dofile(current_mod_path .. "/Database/weapons_arsenal_ag.lua")
+local tac_clsids     = dofile(current_mod_path .. "/Database/weapons_tactical_30.lua")
+local sam_weapons    = dofile(current_mod_path .. "/Database/weapons_sam_interceptors.lua")
+
+-- 2. Register Surface Air Defense Launchers, Radars & C-RAM
+local register_air_defenses = dofile(current_mod_path .. "/Database/units_air_defense.lua")
+if register_air_defenses and sam_weapons then
+    register_air_defenses(sam_weapons)
+end
 
 if ag_clsids then
     for _, c in ipairs(ag_clsids.nato_aam) do table.insert(nextgen_clsids.nato_bvr, c) end

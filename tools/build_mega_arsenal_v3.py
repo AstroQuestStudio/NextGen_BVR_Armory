@@ -824,10 +824,18 @@ def main() -> None:
     for name, theme, bbox, fn in ARSENAL_MODELS:
         clear_scene()
         mat = create_edm_pbr_material(f"Mat_{name}", theme)
-        fn(mat)
+        objs = fn(mat)
+        # Rotate +Y-built weapon -90 deg Z so nose points +X Forward in DCS EDM!
+        root = bpy.data.objects.new("EDM_XForward", None)
+        bpy.context.scene.collection.objects.link(root)
+        root.rotation_euler = (0.0, 0.0, -math.pi * 0.5)
+        for o in objs:
+            if o.parent is None:
+                o.parent = root
         bpy.ops.edm.import_matrials()
-        add_box_helper("BoundingBox", bbox, "BOUNDING_BOX")
-        add_box_helper("Collision", (bbox[0] * 0.6, bbox[1] * 0.95, bbox[2] * 0.6), "COLLISION_SHELL")
+        xb = (bbox[1], bbox[0], bbox[2])
+        add_box_helper("BoundingBox", xb, "BOUNDING_BOX")
+        add_box_helper("Collision", (xb[0] * 0.95, xb[1] * 0.6, xb[2] * 0.6), "COLLISION_SHELL")
         bpy.context.scene.frame_set(100)
         out = SHAPES_DIR / f"{name}.edm"
         bpy.ops.edm.export(filepath=str(out))

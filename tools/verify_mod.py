@@ -1,4 +1,4 @@
-"""Verify NextGen_BVR_Armory Lua syntax hints, shape bindings, CLSID uniqueness, and PBR textures."""
+"""Verify NextGen_BVR_Armory v3.0 Lua syntax, shape bindings, SAM units, CLSID uniqueness, and PBR textures."""
 
 from pathlib import Path
 import re
@@ -15,13 +15,17 @@ def verify(mod_dir: Path) -> None:
 
     lua_files = [
         mod_dir / "entry.lua",
+        db_dir / "polar_profiles.lua",
         db_dir / "weapons_nextgen.lua",
         db_dir / "weapons_arsenal_ag.lua",
         db_dir / "weapons_tactical_30.lua",
+        db_dir / "weapons_sam_interceptors.lua",
+        db_dir / "units_air_defense.lua",
     ]
 
     all_ids = {}
     all_clsids = {}
+    all_units = {}
     missing_shapes = []
 
     for lf in lua_files:
@@ -32,7 +36,7 @@ def verify(mod_dir: Path) -> None:
         assert no_str.count("{") == no_str.count("}"), f"Unbalanced {{}} in {lf.name}"
         assert no_str.count("(") == no_str.count(")"), f"Unbalanced () in {lf.name}"
 
-        if lf.name != "entry.lua":
+        if lf.name.startswith("weapons_"):
             ids = re.findall(r'\bid\s*=\s*"([^"]+)"', txt)
             clsids = re.findall(r'\b(?:clsid|CLSID)\s*=\s*"([^"]+)"', txt)
             shs = re.findall(r'\b(?:shape|ShapeName)\s*=\s*"([^"]+)"', txt)
@@ -45,11 +49,20 @@ def verify(mod_dir: Path) -> None:
             for s in shs:
                 if s not in shapes:
                     missing_shapes.append((s, lf.name))
+        elif lf.name == "units_air_defense.lua":
+            uids = re.findall(r'\bid\s*=\s*"([^"]+)"', txt)
+            shs = re.findall(r'\bshape\s*=\s*"([^"]+)"', txt)
+            for u in uids:
+                assert u not in all_units, f"Duplicate unit id {u}"
+                all_units[u] = lf.name
+            for s in shs:
+                if s not in shapes:
+                    missing_shapes.append((s, lf.name))
 
     assert not missing_shapes, f"Missing .edm shapes: {missing_shapes}"
     print(
-        f"[OK] Verified {len(all_ids)} weapons, {len(all_clsids)} loadouts, "
-        f"{len(shapes)} .edm shapes, {len(textures)} PBR .png maps."
+        f"[OK] Verified {len(all_ids)} weapons, {len(all_clsids)} aircraft loadouts, "
+        f"{len(all_units)} air defense units, {len(shapes)} .edm shapes, {len(textures)} PBR .png maps."
     )
 
 
